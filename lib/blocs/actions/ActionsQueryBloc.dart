@@ -1,20 +1,16 @@
-import 'dart:async';
-
 import 'package:junior_test/blocs/base/BaseBloc.dart';
 import 'package:junior_test/model/RootResponse.dart';
 import 'package:junior_test/resources/api/repository.dart';
 import 'package:rxdart/rxdart.dart';
 
-class ActionsItemQueryBloc extends BaseBloc {
+class ActionsQueryBloc extends BaseBloc {
   final _controller = BehaviorSubject<RootResponse>();
   final _client = Repository();
 
-  Stream<RootResponse> get shopItemContentStream => _controller.stream;
+  Stream<RootResponse> get shopListContentStream => _controller.stream;
 
-  void loadActionItemContent(int id) async {
-    print('ActionsItemQueryBloc loadActionItemContent id: $id');
-    // 1
-    final results = await _client.fetchActionInfo(id);
+  void loadActions(int page, int itemsOnPage) async {
+    final results = await _client.fetchActions(page, itemsOnPage);
     addResultToController(_controller, results);
   }
 

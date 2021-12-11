@@ -39,6 +39,7 @@ class BlocProvider<T extends BaseBloc> extends StatefulWidget {
       : super(key: key);
 
   static T of<T extends BaseBloc>(BuildContext context) {
+    print('BlocProvider of');
     final BlocProvider<T> provider =
         context.findAncestorWidgetOfExactType<BlocProvider<T>>();
     return provider.bloc;

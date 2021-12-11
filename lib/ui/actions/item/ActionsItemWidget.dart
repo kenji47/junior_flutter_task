@@ -22,11 +22,13 @@ class _ActionsItemWidgetState extends NewBasePageState<ActionsItemWidget> {
   int actionId = -1;
 
   _ActionsItemWidgetState() {
+    print('_ActionsItemWidgetState Constructor');
     bloc = ActionsItemQueryBloc();
   }
 
   @override
   Widget build(BuildContext context) {
+    print('_ActionsItemWidgetState build');
     if (actionId == -1) {
       final ActionsItemArguments args =
           ModalRoute.of(context).settings.arguments;
@@ -38,6 +40,7 @@ class _ActionsItemWidgetState extends NewBasePageState<ActionsItemWidget> {
 
   @override
   Widget onSuccess(RootTypes event, RootResponse response) {
+    print('_ActionsItemWidgetState onSuccess');
     var actionInfo = response.serverResponse.body.promo.item;
     return getNetworkAppBar(
         actionInfo.imgFull, _getBody(actionInfo), actionInfo.name,
@@ -45,6 +48,7 @@ class _ActionsItemWidgetState extends NewBasePageState<ActionsItemWidget> {
   }
 
   void runOnWidgetInit() {
+    print('_ActionsItemWidgetState runOnWidgetInit');
     bloc.loadActionItemContent(actionId);
   }
 

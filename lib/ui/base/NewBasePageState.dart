@@ -16,6 +16,7 @@ abstract class NewBasePageState<T extends StatefulWidget> extends State<T> {
 
   @override
   void initState() {
+    print('NewBasePageState initState');
     super.initState();
     apiFetcher();
   }
@@ -36,6 +37,7 @@ abstract class NewBasePageState<T extends StatefulWidget> extends State<T> {
 
   @override
   Widget build(BuildContext context) {
+    print('NewBasePageState build');
     return getNetworkAppBar(
         getAppBarImage(), getBody(context), getAppBarTitle());
   }
@@ -46,6 +48,7 @@ abstract class NewBasePageState<T extends StatefulWidget> extends State<T> {
 
   Widget getNetworkAppBar(String appBarImageLink, Widget body, String title,
       {List<Widget> actions, Brightness brightness = Brightness.dark}) {
+    print('NewBasePageState getNetworkAppBar');
     Widget networkBackground = Container(
         color: MyColors.grey_light,
         child: Card(
@@ -61,8 +64,7 @@ abstract class NewBasePageState<T extends StatefulWidget> extends State<T> {
               imageUrl: Tools.getImagePath(appBarImageLink),
               placeholder: (context, url) =>
                   Center(child: CircularProgressIndicator()),
-              errorWidget: (context, url, error) =>
-                  Image(image: AssetImage('mall_background.png')),
+              errorWidget: (context, url, error) => Image(image: AssetImage('assets/mall_background.png'), fit: BoxFit.fitWidth,),
               imageBuilder: (context, imageProvider) => Container(
                   decoration: BoxDecoration(
                 image: DecorationImage(
@@ -77,6 +79,7 @@ abstract class NewBasePageState<T extends StatefulWidget> extends State<T> {
 
   Widget StaticAppBar(String title, Widget body,
       {List<Widget> actions, Brightness brightness = Brightness.dark}) {
+    print('NewBasePageState StaticAppBar');
     return FlexAppBar(
       title,
       MallLogoWidget(),
@@ -89,6 +92,7 @@ abstract class NewBasePageState<T extends StatefulWidget> extends State<T> {
 
   StreamBuilder<RootResponse> getBaseQueryStream(Stream stream,
       {bool isShowProgress = true}) {
+    print('NewBasePageState getBaseQueryStream');
     return StreamBuilder<RootResponse>(
         stream: stream,
         builder: (context, AsyncSnapshot<RootResponse> snapshot) {
@@ -170,6 +174,7 @@ abstract class NewBasePageState<T extends StatefulWidget> extends State<T> {
   }
 
   Widget _showInitWidget() {
+    print('NewBasePageState _showInitWidget');
     SchedulerBinding.instance.addPostFrameCallback((_) {
       runOnWidgetInit();
     });
@@ -177,6 +182,7 @@ abstract class NewBasePageState<T extends StatefulWidget> extends State<T> {
   }
 
   Widget initWidget() {
+    print('NewBasePageState initWidget');
     return StaticAppBar(
         Strings.appname,
         Container(

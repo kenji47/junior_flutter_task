@@ -4,9 +4,9 @@ class Tools {
   static const int LIST_ITEM_COUNT = 5;
 
   static String getImagePath(String shortPath) {
-    //TODO выдавать какую-нибудь картинку при пустом адресе.
+    //TODO change image.
     if ((shortPath == null) || (shortPath == "null")) {
-      shortPath = "uploads/mall.jpg";
+      shortPath = "assets/uploads/mall.png";
     }
     return MallApiProvider.baseImageUrl + shortPath;
   }
