@@ -64,7 +64,11 @@ abstract class NewBasePageState<T extends StatefulWidget> extends State<T> {
               imageUrl: Tools.getImagePath(appBarImageLink),
               placeholder: (context, url) =>
                   Center(child: CircularProgressIndicator()),
-              errorWidget: (context, url, error) => Image(image: AssetImage('assets/mall_background.png'), fit: BoxFit.fitWidth,),
+              errorWidget: (context, url, error) {
+                print('errorWidget $url error $error');
+                return Image(image: AssetImage('assets/mall_background.png'),
+                  fit: BoxFit.fitWidth,);
+              },
               imageBuilder: (context, imageProvider) => Container(
                   decoration: BoxDecoration(
                 image: DecorationImage(
