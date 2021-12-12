@@ -15,10 +15,10 @@ class ActionCardWIdget extends StatelessWidget {
 
   const ActionCardWIdget(
       {@required this.id,
-      @required this.name,
-      @required this.shop,
-      @required this.thumbnailUrl,
-      @required this.onTap});
+        @required this.name,
+        @required this.shop,
+        @required this.thumbnailUrl,
+        @required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,7 @@ class ActionCardWIdget extends StatelessWidget {
                 child: Text(
                   name,
                   style: TextStyle(
-                      fontSize: MyDimens.titleBig, color: MyColors.white),
+                    fontSize: MyDimens.titleBig, color: MyColors.white,),
                   textAlign: TextAlign.center,
                 ),
               ),

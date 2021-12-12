@@ -2,6 +2,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:junior_test/blocs/actions/ActionsQueryBloc.dart';
 import 'package:junior_test/blocs/base/bloc_provider.dart';
 import 'package:junior_test/model/RootResponse.dart';
@@ -80,41 +81,48 @@ class _ActionsWidgetState extends NewBasePageState<ActionsWidget> {
                 isLoading = true;
               }
             },
-            child: GridView.builder(
-              padding: EdgeInsets.all(10),
-              itemCount: currentPage == pagesTotal
-                  ? actionListInfo.length
-                  : actionListInfo.length + 1,
-              itemBuilder: (BuildContext context, int index) =>
-                  index >= actionListInfo.length
-                      ? Center(
-                          child: SizedBox(
-                            height: 25,
-                            width: 25,
-                            child: CircularProgressIndicator(strokeWidth: 1.5),
-                          ),
-                        )
-                      : ActionCardWIdget(
-                          id: actionListInfo[index].id,
-                          name: actionListInfo[index].name,
-                          shop: actionListInfo[index].shop,
-                          thumbnailUrl: actionListInfo[index].imgThumb,
-                          onTap: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                  builder: (_) => ActionsItemWidget(),
-                                  settings: RouteSettings(
-                                    arguments: ActionsItemArguments(
-                                        actionListInfo[index].id),
-                                  )),
-                            );
-                          },
-                        ),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 3 / 4,
-                crossAxisSpacing: 5,
-                mainAxisSpacing: 5,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: StaggeredGridView.builder(
+                itemCount: currentPage == pagesTotal
+                    ? actionListInfo.length
+                    : actionListInfo.length + 1,
+                gridDelegate: SliverStaggeredGridDelegateWithFixedCrossAxisCount(
+                  staggeredTileCount: currentPage == pagesTotal
+                      ? actionListInfo.length
+                      : actionListInfo.length + 1,
+                  staggeredTileBuilder: (index) {
+                    return StaggeredTile.count(1, index.isEven ? 1.2 : 1.8);
+                  },
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 5,
+                  mainAxisSpacing: 5,
+                ),
+                itemBuilder: (BuildContext context, int index) =>
+                index >= actionListInfo.length
+                    ? Center(
+                  child: SizedBox(
+                    height: 25,
+                    width: 25,
+                    child: CircularProgressIndicator(strokeWidth: 1.5),
+                  ),
+                )
+                    : ActionCardWIdget(
+                  id: actionListInfo[index].id,
+                  name: actionListInfo[index].name,
+                  shop: actionListInfo[index].shop,
+                  thumbnailUrl: actionListInfo[index].imgThumb,
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                          builder: (_) => ActionsItemWidget(),
+                          settings: RouteSettings(
+                            arguments: ActionsItemArguments(
+                                actionListInfo[index].id),
+                          )),
+                    );
+                  },
+                ),
               ),
             ),
           ),
