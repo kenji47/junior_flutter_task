@@ -1,3 +1,3 @@
 # junior_test
 
-<img src="./screenshots/screen1.png" alt="Tabata screen" width="300"/>
+<img src="./screenshots/screen2.png" alt="Tabata screen" width="300"/>
